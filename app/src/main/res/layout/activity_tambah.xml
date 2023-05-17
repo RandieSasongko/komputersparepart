@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:hint="Asal Kuliner"
         android:background="@color/white"
-        android:inputType="number"
+        android:inputType="text"
         android:textSize="21sp"
         android:padding="8dp"
         android:layout_marginTop="6dp"
