@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Gagal Menghubungi Server", Toast.LENGTH_SHORT).show();
                 pbKuliner.setVisibility(View.GONE);
             }
+
         });
 
         }
