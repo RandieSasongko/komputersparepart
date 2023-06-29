@@ -1,4 +1,4 @@
-package com.if4a.kulinerkita.Activity;
+package com.if4a.komputersparepart.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,12 +11,12 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.if4a.kulinerkita.API.APIRequestData;
-import com.if4a.kulinerkita.API.RetroServer;
-import com.if4a.kulinerkita.Adapter.AdapterKuliner;
-import com.if4a.kulinerkita.Model.ModelKuliner;
-import com.if4a.kulinerkita.Model.ModelResponse;
-import com.if4a.kulinerkita.R;
+import com.if4a.komputersparepart.API.APIRequestData;
+import com.if4a.komputersparepart.API.RetroServer;
+import com.if4a.komputersparepart.Adapter.AdapterKomputer;
+import com.if4a.komputersparepart.Model.ModelKomputer;
+import com.if4a.komputersparepart.Model.ModelResponse;
+import com.if4a.komputersparepart.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter adKuliner;
     private ProgressBar pbKuliner;
     private RecyclerView.LayoutManager lmKuliner;
-    private List<ModelKuliner> listKuliner = new ArrayList<>();
+    private List<ModelKomputer> listKuliner = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 String pesan = response.body().getPesan();
                 listKuliner = response.body().getData();
 
-                adKuliner = new AdapterKuliner(MainActivity.this, listKuliner);
+                adKuliner = new AdapterKomputer(MainActivity.this, listKuliner);
                 rvKuliner.setAdapter(adKuliner);
                 adKuliner.notifyDataSetChanged();
                 pbKuliner.setVisibility(View.GONE);
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ModelResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Gagal Menghubungi Server", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Gagal Menghubungi Server" + t.getMessage(), Toast.LENGTH_SHORT).show();
                 pbKuliner.setVisibility(View.GONE);
             }
 

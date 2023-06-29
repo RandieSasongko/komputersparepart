@@ -1,11 +1,11 @@
-package com.if4a.kulinerkita.Model;
+package com.if4a.komputersparepart.Model;
 
 import java.util.List;
 
 public class ModelResponse {
 
     private String kode, pesan;
-    private List<ModelKuliner> data;
+    private List<ModelKomputer> data;
 
     public String getKode() {
         return kode;
@@ -15,7 +15,7 @@ public class ModelResponse {
         return pesan;
     }
 
-    public List<ModelKuliner> getData() {
+    public List<ModelKomputer> getData() {
         return data;
     }
 }

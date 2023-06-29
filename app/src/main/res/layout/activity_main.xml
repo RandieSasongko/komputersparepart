@@ -6,11 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".Activity.MainActivity">
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_kuliner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/list_item_kuliner"/>
+        tools:listitem="@layout/list_item_kuliner"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_tambah"
@@ -20,7 +23,7 @@
         android:layout_alignParentRight="true"
         android:layout_margin="32dp"
         android:src="@drawable/ic_tambah"
-        app:tint="@null"
+        android:tint="@null"
         />
 
     <ProgressBar

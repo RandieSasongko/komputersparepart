@@ -1,4 +1,4 @@
-package com.if4a.kulinerkita;
+package com.if4a.komputersparepart;
 
 import org.junit.Test;
 

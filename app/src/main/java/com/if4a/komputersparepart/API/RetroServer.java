@@ -1,10 +1,10 @@
-package com.if4a.kulinerkita.API;
+package com.if4a.komputersparepart.API;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroServer {
-    private static final String alamatServer = "https://kulinerrandie.000webhostapp.com/";
+    private static final String alamatServer = "http://uaspab2.000webhostapp.com/";
     private static Retrofit retro;
 
     public static Retrofit konekRetrofit() {

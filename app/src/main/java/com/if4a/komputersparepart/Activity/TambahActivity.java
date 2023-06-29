@@ -1,4 +1,4 @@
-package com.if4a.kulinerkita.Activity;
+package com.if4a.komputersparepart.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,10 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.if4a.kulinerkita.API.APIRequestData;
-import com.if4a.kulinerkita.API.RetroServer;
-import com.if4a.kulinerkita.Model.ModelResponse;
-import com.if4a.kulinerkita.R;
+import com.if4a.komputersparepart.API.APIRequestData;
+import com.if4a.komputersparepart.API.RetroServer;
+import com.if4a.komputersparepart.Model.ModelResponse;
+import com.if4a.komputersparepart.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,9 +19,9 @@ import retrofit2.Response;
 
 public class TambahActivity extends AppCompatActivity {
 
-    private EditText etNama, etAsal, etDeskripsiSingkat;
+    private EditText etNama, etKategori, etDeskripsi, etType, etKapasitas;
     private Button btnSimpan;
-    private String nama, asal, deskripsiSingkat;
+    private String nama, kategori, deskripsi, type, kapasitas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,28 +29,40 @@ public class TambahActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tambah);
 
         etNama = findViewById(R.id.et_nama);
-        etAsal = findViewById(R.id.et_asal);
-        etDeskripsiSingkat = findViewById(R.id.et_deskripsi_singkat);
+        etKategori = findViewById(R.id.et_kategori);
+        etDeskripsi = findViewById(R.id.et_deskripsi);
+        etType = findViewById(R.id.et_type);
+        etKapasitas = findViewById(R.id.et_kapasitas);
         btnSimpan = findViewById(R.id.btn_tambah);
 
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 nama = etNama.getText().toString();
-                asal = etAsal.getText().toString();
-                deskripsiSingkat = etDeskripsiSingkat.getText().toString();
+                kategori = etKategori.getText().toString();
+                deskripsi = etDeskripsi.getText().toString();
+                type = etType.getText().toString();
+                kapasitas = etKapasitas.getText().toString();
 
                 if(nama.trim().isEmpty())
                 {
                     etNama.setError("Nama Tidak Boleh Kosong");
                 }
-                else if(asal.trim().isEmpty())
+                else if(kategori.trim().isEmpty())
                 {
-                    etAsal.setError("Asal Tidak Boleh Kosong");
+                    etKategori.setError("Asal Tidak Boleh Kosong");
                 }
-                else if(deskripsiSingkat.trim().isEmpty())
+                else if(deskripsi.trim().isEmpty())
                 {
-                    etDeskripsiSingkat.setError("Deskripsi Singkat Tidak Boleh Kosong");
+                    etDeskripsi.setError("Deskripsi Tidak Boleh Kosong");
+                }
+                else if(type.trim().isEmpty())
+                {
+                    etType.setError("Type Tidak Boleh Kosong");
+                }
+                else if(kapasitas.trim().isEmpty())
+                {
+                    etKapasitas.setError("Kapasitas Tidak Boleh Kosong");
                 }
                 else
                 {
@@ -64,7 +76,7 @@ public class TambahActivity extends AppCompatActivity {
     private void tambahKuliner()
     {
         APIRequestData ARD = RetroServer.konekRetrofit().create(APIRequestData.class);
-        Call<ModelResponse> proses = ARD.ardCreate(nama, asal, deskripsiSingkat);
+        Call<ModelResponse> proses = ARD.ardCreate(nama, kategori, deskripsi, type, kapasitas);
 
         proses.enqueue(new Callback<ModelResponse>() {
             @Override
@@ -78,7 +90,7 @@ public class TambahActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ModelResponse> call, Throwable t) {
-                Toast.makeText(TambahActivity.this, "Gagal Menghubungi Serve : " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(TambahActivity.this, "Gagal Menghubungi Server : " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

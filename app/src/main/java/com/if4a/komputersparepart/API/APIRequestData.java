@@ -1,9 +1,8 @@
-package com.if4a.kulinerkita.API;
+package com.if4a.komputersparepart.API;
 
-import com.if4a.kulinerkita.Model.ModelResponse;
+import com.if4a.komputersparepart.Model.ModelResponse;
 
 import retrofit2.Call;
-import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -17,8 +16,10 @@ public interface APIRequestData {
     @POST("create.php")
     Call<ModelResponse> ardCreate(
             @Field("nama") String nama,
-            @Field("asal") String asal,
-            @Field("deskripsi_singkat") String deskripsi_singkat
+            @Field("kategori") String kategori,
+            @Field("deskripsi") String deskripsi,
+            @Field("type") String type,
+            @Field("kapasitas") String kapasitas
     );
 
     @FormUrlEncoded
@@ -26,8 +27,10 @@ public interface APIRequestData {
     Call<ModelResponse> ardUpdate(
             @Field("id") String id,
             @Field("nama") String nama,
-            @Field("asal") String asal,
-            @Field("deskripsi_singkat") String deskripsi_singkat
+            @Field("kategori") String kategori,
+            @Field("deskripsi") String deskripsi,
+            @Field("type") String type,
+            @Field("kapasitas") String kapasitas
     );
 
     @FormUrlEncoded

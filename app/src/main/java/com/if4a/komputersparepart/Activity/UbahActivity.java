@@ -1,4 +1,4 @@
-package com.if4a.kulinerkita.Activity;
+package com.if4a.komputersparepart.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,19 +9,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.if4a.kulinerkita.API.APIRequestData;
-import com.if4a.kulinerkita.API.RetroServer;
-import com.if4a.kulinerkita.Model.ModelResponse;
-import com.if4a.kulinerkita.R;
+import com.if4a.komputersparepart.API.APIRequestData;
+import com.if4a.komputersparepart.API.RetroServer;
+import com.if4a.komputersparepart.Model.ModelResponse;
+import com.if4a.komputersparepart.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UbahActivity extends AppCompatActivity {
-    private String yId, yNama, yAsal, yDeskripsiSingkat;
-    String id, nama, asal, deskripsiSingkat;
-    private EditText etNama, etAsal, etDeskripsiSingkat;
+    private String yId, yNama, yKategori, yDeskripsi, yType, yKapasitas;
+    String id, nama, kategori, deskripsi, type, kapasitas;
+    private EditText etNama, etKategori, etDeskripsi, etType, etKapasitas;
     private Button btnUbah;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,36 +31,52 @@ public class UbahActivity extends AppCompatActivity {
         Intent ambil = getIntent();
         yId = ambil.getStringExtra("xId");
         yNama = ambil.getStringExtra("xNama");
-        yAsal = ambil.getStringExtra("xAsal");
-        yDeskripsiSingkat = ambil.getStringExtra("xDeskripsiSingkat");
+        yKategori = ambil.getStringExtra("xKategori");
+        yDeskripsi = ambil.getStringExtra("xDeskripsi");
+        yType = ambil.getStringExtra("xType");
+        yKapasitas = ambil.getStringExtra("xKapasitas");
 
         btnUbah = findViewById(R.id.btn_ubah);
         etNama = findViewById(R.id.et_nama);
-        etAsal = findViewById(R.id.et_asal);
-        etDeskripsiSingkat = findViewById(R.id.et_deskripsi_singkat);
+        etKategori = findViewById(R.id.et_kategori);
+        etDeskripsi = findViewById(R.id.et_deskripsi);
+        etType = findViewById(R.id.et_type);
+        etKapasitas = findViewById(R.id.et_kapasitas);
 
         etNama.setText(yNama);
-        etAsal.setText(yAsal);
-        etDeskripsiSingkat.setText(yDeskripsiSingkat);
+        etKategori.setText(yKategori);
+        etDeskripsi.setText(yDeskripsi);
+        etType.setText(yType);
+        etKapasitas.setText(yKapasitas);
 
         btnUbah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 nama = etNama.getText().toString();
-                asal = etAsal.getText().toString();
-                deskripsiSingkat = etDeskripsiSingkat.getText().toString();
+                kategori = etKategori.getText().toString();
+                deskripsi = etDeskripsi.getText().toString();
+                type = etType.getText().toString();
+                kapasitas = etKapasitas.getText().toString();
 
                 if(nama.trim().isEmpty())
                 {
                     etNama.setError("Nama Tidak Boleh Kosong");
                 }
-                else if(asal.trim().isEmpty())
+                else if(kategori.trim().isEmpty())
                 {
-                    etAsal.setError("Asal Tidak Boleh Kosong");
+                    etKategori.setError("Asal Tidak Boleh Kosong");
                 }
-                else if(deskripsiSingkat.trim().isEmpty())
+                else if(deskripsi.trim().isEmpty())
                 {
-                    etDeskripsiSingkat.setError("Deskripsi Singkat Tidak Boleh Kosong");
+                    etDeskripsi.setError("Deskripsi Tidak Boleh Kosong");
+                }
+                else if(type.trim().isEmpty())
+                {
+                    etType.setError("Type Tidak Boleh Kosong");
+                }
+                else if(kapasitas.trim().isEmpty())
+                {
+                    etKapasitas.setError("Kapasitas Tidak Boleh Kosong");
                 }
                 else
                 {
@@ -74,7 +90,7 @@ public class UbahActivity extends AppCompatActivity {
     private void ubahKuliner()
     {
         APIRequestData ARD = RetroServer.konekRetrofit().create(APIRequestData.class);
-        Call<ModelResponse> proses = ARD.ardUpdate(yId, nama, asal, deskripsiSingkat);
+        Call<ModelResponse> proses = ARD.ardUpdate(yId, nama, kategori, deskripsi, type, kapasitas);
 
         proses.enqueue(new Callback<ModelResponse>() {
             @Override

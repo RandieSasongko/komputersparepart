@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.if4a.kulinerkita'
+    namespace 'com.if4a.komputersparepart'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.if4a.kulinerkita"
+        applicationId "com.if4a.komputersparepart"
         minSdk 24
         targetSdk 33
         versionCode 1
